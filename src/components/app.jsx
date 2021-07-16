@@ -1,6 +1,6 @@
 import React, {Component} from'react';
 import axios from 'axios';
-import Songs from './DisplayMusic/displayMusic';
+import DisplayMusic from './DisplayMusic/displayMusic';
 
 class App extends Component{
     constructor(props){
@@ -19,7 +19,7 @@ class App extends Component{
         return(
             <React.Fragment>
                 <div className="container-fluid">
-                    <displayMusic  songs={this.state.songs} />
+                    <DisplayMusic  songs={this.state.songs} />
                 </div>
             </React.Fragment>
         )

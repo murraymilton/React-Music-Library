@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 
-class Songs extends Component{
+class DisplayMusic extends Component{
     constructor(props){
         super(props);
         this.state={
@@ -33,7 +33,7 @@ class Songs extends Component{
                     <tr>Artist</tr>
                     <tr>Album</tr>
                     <tr>Release Date</tr>
-                        {this.state.songs.map((song) =>{
+                    {this.state.songs.map((song) =>{
                         return(
                             <div>
                                 <tbody>
@@ -51,4 +51,4 @@ class Songs extends Component{
     }
 }
 
-export default Songs;
+export default DisplayMusic;
