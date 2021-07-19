@@ -21,7 +21,6 @@ class CreateMusic extends Component{
 
     handleChange = (event) => {
         let errors = this.state.errors;
-        console.log("Hello");
         switch(event.target.name){
             case 'title':
                 errors.title = event.target.value.length < 2 ? 'Title must be at least two characters.' : null;
