@@ -1,5 +1,6 @@
 import React, {Component} from'react';
 import axios from 'axios';
+import CreateMusic from './createMusic';
 import DisplayMusic from './DisplayMusic/displayMusic';
 
 class App extends Component{
@@ -30,6 +31,7 @@ class App extends Component{
             <React.Fragment>
                 <div className="container-fluid">
                     <DisplayMusic  songs={this.state.songs} />
+                    <CreateMusic refreshTable={this.state.songs} />
                 </div>
             </React.Fragment>
         )
