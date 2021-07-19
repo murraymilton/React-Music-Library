@@ -1,5 +1,4 @@
 import React, {Component} from'react';
-import axios from 'axios';
 import DisplayMusic from './DisplayMusic/displayMusic';
 
 class App extends Component{
@@ -9,21 +8,7 @@ class App extends Component{
             songs:[]
         }
     }
-    componentDidMount(){
-        this.makeGetRequest();
-    }
-    async makeGetRequest(){
-        try{
-            let response =await axios.get('http://127.0.0.1:8000/music_library/')
-            this.setState({
-                songs:response.data
-            });
-            console.log(response);
-        }
-        catch(ex){
-            console.log('Error API call! Cannot');
-        }
-    }
+    
 
     render() {
         return(
