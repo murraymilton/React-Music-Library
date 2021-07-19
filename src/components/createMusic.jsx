@@ -13,7 +13,7 @@ class CreateMusic extends Component{
                 title: '',
                 artist: ''
             }
-        }
+        }       
     }
     componentDidMount(){
         this.postNewSong();
