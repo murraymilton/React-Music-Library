@@ -16,10 +16,10 @@ const DisplayMusic = (props) => {
                         // console.log(song)
                         <div key = {id}>
                             <tbody>
-                                <td>{song.Title}</td>
-                                <td>{song.Artist}</td>
-                                <td>{song.Album}</td>
-                                <td>{song.RealeaseDate}</td>
+                                <td>{song.title}</td>
+                                <td>{song.artist}</td>
+                                <td>{song.album}</td>
+                                <td>{song.release_date}</td>
                             </tbody>
                         </div>
                     );
