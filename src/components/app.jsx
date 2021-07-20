@@ -41,19 +41,20 @@ class App extends Component{
         });
     }
 
-    // async postNewSong(song) {
-    //     await axios.post(`http://127.0.0.1:8000/music_library/${song}/`);
-    //     console.log(song);
-    // }
-
-    async deleteSong(song, songs) {
-        let tempSongs = `${this.state.songs}`
-        tempSongs.pop(song);
-        this.setState({
-            songs: tempSongs
-        });
-        await axios.delete(`http://127.0.0.1:8000/music_library/${song}/`);
-        console.log(song)
+    async deleteSong(song) {
+        try{
+            let res = await axios.delete(`http://127.0.0.1:8000/music_library/${song}/`);
+            if(res.status === 200){
+                alert(`${this.state.song.title} by ${this.state.song.artist} deleted from your database.`);
+                let tempSongs = axios.get(`http://127.0.0.1:8000/music_library/`);
+                this.setState({
+                    songs: tempSongs.data
+                });
+            }
+        }
+        catch(ex){
+            alert('Error in request: Unable to delete song')
+        }
     }
 
 
@@ -61,7 +62,7 @@ class App extends Component{
         return(
             <React.Fragment>
                 <div className="container-fluid">
-                    <NewSongForm songs={this.state.songs} addSong={this.addSong} postNewSong={this.postNewSong}/>
+                    <NewSongForm songs={this.state.songs} addSong={this.addSong} />
                     <DisplayMusic songs={this.state.songs} deleteSong={this.deleteSong} />
                 </div>
             </React.Fragment>

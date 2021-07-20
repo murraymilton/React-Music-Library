@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 import React, {Component} from 'react';
 
 
@@ -22,9 +22,9 @@ class NewSongForm extends Component{
         } 
         
     }
-    // componentDidMount() {
-    //     this.postNewSong();
-    // }
+    componentDidMount() {
+        this.postNewSong();
+    }
 
     handleChange = (event) => {
         this.setState({
@@ -33,6 +33,10 @@ class NewSongForm extends Component{
     }
 
     
+    async postNewSong(song) {
+        let res = await axios.post(`http://127.0.0.1:8000/music_library/${song}/`);
+        console.log(res);
+    }
 
 
     // async postNewSong(){
