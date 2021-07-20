@@ -1,7 +1,8 @@
 import React, {Component} from'react';
 import axios from 'axios';
-import CreateMusic from './createMusic';
+import NewSongForm from './newSongForm';
 import DisplayMusic from './DisplayMusic/displayMusic';
+import SearchBar from './searchBar';
 
 class App extends Component{
     constructor(props){
@@ -24,14 +25,16 @@ class App extends Component{
         catch(ex){
             console.log('Error in API call!');
         }
+        
     }
 
     render() {
         return(
             <React.Fragment>
                 <div className="container-fluid">
+                    <NewSongForm refreshTable={this.state.songs} />
                     <DisplayMusic songs={this.state.songs} />
-                    <CreateMusic refreshTable={this.state.songs} />
+                    <SearchBar />
                 </div>
             </React.Fragment>
         )
