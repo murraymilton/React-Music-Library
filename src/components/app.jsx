@@ -1,6 +1,6 @@
 import React, {Component} from'react';
 import axios from 'axios';
-import CreateMusic from './createMusic';
+import NewSongForm from './newSongForm';
 import DisplayMusic from './DisplayMusic/displayMusic';
 
 class App extends Component{
@@ -30,7 +30,7 @@ class App extends Component{
         return(
             <React.Fragment>
                 <div className="container-fluid">
-                    <CreateMusic refreshTable={this.state.songs} />
+                    <NewSongForm refreshTable={this.state.songs} />
                     <DisplayMusic songs={this.state.songs} />
                     
                 </div>
