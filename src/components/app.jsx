@@ -30,8 +30,9 @@ class App extends Component{
         return(
             <React.Fragment>
                 <div className="container-fluid">
-                    <DisplayMusic songs={this.state.songs} />
                     <CreateMusic refreshTable={this.state.songs} />
+                    <DisplayMusic songs={this.state.songs} />
+                    
                 </div>
             </React.Fragment>
         )
