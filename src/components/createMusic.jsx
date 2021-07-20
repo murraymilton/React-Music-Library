@@ -9,6 +9,7 @@ class CreateMusic extends Component{
             artist: '',
             album: '',
             release_date: '',
+            like: 0,
             errors: {
                 title: '',
                 artist: ''
@@ -42,6 +43,7 @@ class CreateMusic extends Component{
         newSong.errors = '';
         try{
             let response = await axios.post('http://127.0.0.1:8000/music_library/', newSong);
+            console.log(response)
             if (response.status === 201){
                 alert(`"${this.state.title}" by ${this.state.artist} added to database!`)
                 this.props.refreshTable();
@@ -49,7 +51,8 @@ class CreateMusic extends Component{
                     title: '',
                     artist: '',
                     album: '',
-                    release_date: ''
+                    release_date: '',
+                    like: 0
                 })
             }
         }
