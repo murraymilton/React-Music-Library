@@ -29,10 +29,16 @@ class NewSongForm extends Component{
             [event.target.name]: event.target.value
         });
     }
+<<<<<<< HEAD
 
     handleSubmit = (event) => {
         event.preventDefault();
         const newSong = {
+=======
+    handleSubmit = (event) =>{
+        event.preventDefault();
+        const  newSong = {
+>>>>>>> 115906c5fc43694c776a9a8c426ef8ac0c299bbe
             title: this.state.title,
             artist: this.state.artist,
             album: this.state.album,
@@ -40,10 +46,17 @@ class NewSongForm extends Component{
         }
         this.props.addSong(newSong);
         this.setState({
+<<<<<<< HEAD
             title: '',
             artist: '',
             album: '',
             release_date: ''
+=======
+            title:'',
+            artist:'',
+            album:'',
+            release_date:''
+>>>>>>> 115906c5fc43694c776a9a8c426ef8ac0c299bbe
         });
         alert(`newSongTitle: ${this.state.title}
             newSongArtist: ${this.state.artist}
