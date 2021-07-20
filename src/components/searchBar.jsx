@@ -7,4 +7,12 @@ class SearchBar extends React.Component{
             searchSong: ''
         }
     }
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+    filterSongs(){
+        
+    }
 }
