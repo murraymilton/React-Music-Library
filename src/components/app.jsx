@@ -1,7 +1,10 @@
 import React, {Component} from'react';
 import axios from 'axios';
 import NewSongForm from './newSongForm';
+import SearchBar from './searchBar';
 import DisplayMusic from './DisplayMusic/displayMusic';
+import Footer from './Footer/Footer';
+import Header from './Header/Header';
 
 
 class App extends Component{
@@ -26,7 +29,6 @@ class App extends Component{
             console.log('Error in API call!');
         }
     }
-
     addSong = (newSong) => {
         let newSongObject = {
           title: newSong.title,
@@ -39,8 +41,8 @@ class App extends Component{
         this.setState({
           songs: tempSongs
         });
+        
     }
-
     async deleteSong(song) {
         try{
             let res = await axios.delete(`http://127.0.0.1:8000/music_library/${song}/`);
@@ -51,19 +53,21 @@ class App extends Component{
                     songs: tempSongs.data
                 });
             }
+            
         }
         catch(ex){
             alert('Error in request: Unable to delete song')
         }
     }
-
-
     render() {
         return(
             <React.Fragment>
                 <div className="container-fluid">
+                    <Header />
                     <NewSongForm songs={this.state.songs} addSong={this.addSong} />
+                    <SearchBar />
                     <DisplayMusic songs={this.state.songs} deleteSong={this.deleteSong} />
+                    <Footer />
                 </div>
             </React.Fragment>
         )

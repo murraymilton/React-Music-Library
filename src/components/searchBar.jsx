@@ -46,16 +46,22 @@ class SearchBar extends Component{
     render(){
         return(
             <React.Fragment>
-                <div className="text-center">
-                    <form onSubmit={this.handleSubmit}>
-                        <input type="text" placeholder="Please enter your search parameter" value={this.state.songLookUp}
-                        onChange={this.handleChange}>
-                        </input>
-                    </form>
-                </div>
+                <form onSubmit={(event) => this.handleSubmit(event)}>
+                    <h3 className="text-center mt-5">Filter Database</h3>
+                    <p className="text-center">Enter title, artist, album, or release date.</p>
+                    <div className="form-group d-flex justify-content-center">
+                        <div>
+                            <input type="text" className="form-control" name="searchTerm" onChange={this.handleChange} value={this.state.searchTerm} />
+                        </div>
+                    </div>
+                    <div className="d-flex justify-content-center">
+                        <button type="submit" className="btn btn-primary">Search</button>
+                    </div>
+                </form>
             </React.Fragment>
-        );
+        )
     }
 }
+
 
 export default SearchBar;

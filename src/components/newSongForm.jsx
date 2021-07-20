@@ -16,68 +16,76 @@ class NewSongForm extends Component{
                 title: '',
                 artist: '',
                 album: '',
-                release_date:''
+                release_date:'',
             }
-            
-        } 
-        
-    }
-    componentDidMount() {
-        this.postNewSong();
-    }
-
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    }
-
-    
-    async postNewSong(song) {
-        let res = await axios.post(`http://127.0.0.1:8000/music_library/${song}/`);
-        console.log(res);
-    }
-
-
-    // async postNewSong(){
-    //     let newSong = Object.assign({},this.state);
-    //     console.log(newSong);
-    //     newSong.errors ='';
-    //     try{
-    //         let res = await axios.post('http://127.0.0.1:8000/music_library/', newSong);
-    //         if(res.status === 201){
-    //             alert(`"${this.state.title}" by ${this.state.artist} added to songs database.`)
-    //             this.props.updateDisplay();
-    //             this.setState({
-    //                 songs: res.data
-    //             })
-    //         }
-    //     }
-    //     catch(ex){
-    //         alert('Error in request: Unable to add song')
-    //     }
-    // }
-
-    handleSubmit = (event) => {
-        event.preventDefault();
-        const newSong = {
-            title: this.state.title,
-            artist: this.state.artist,
-            album: this.state.album,
-            release_date: this.state.release_date
         }
-        this.props.addSong(newSong);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+}
+
+async createSong() {
+    const song = {
+        title: this.state.title,
+        artist: this.state.artist,
+        album: this.state.album,
+        genre: this.state.genre,
+        release_date: this.state.release_date,
+    }
+    try{
+        console.log("create a song request is called")  // test
+        await axios.post('http://127.0.0.1:8000/music_library/', song);
+        this.props.updateTable();
         this.setState({
-            title: '',
-            artist: '',
-            album: '',
-            release_date: ''
         });
-        alert(`newSongTitle: ${this.state.title}
-            newSongArtist: ${this.state.artist}
-            newSongAlbum: ${this.state.album}
-            newSongRealeaseDate: ${this.state.realease_date}`)
-    };
+        alert(`${this.state.title} by ${this.state.artist} has been added to the library`)
+    }
+    catch (ex) {
+        console.log(ex);
+    }
+}
+
+handleChange(event) {
+    let errors = this.state.errors;
+
+    switch(event.target.name){
+        case 'title':
+            errors.title = event.target.value.length < 2 ? "Title must be at least two characters" : null;
+            break;
+        case 'artist':
+            errors.artist = event.target.value.length < 2 ? "Artist name must be at least two characters" : null;
+            break;
+        default:
+            break;
+    }
+
+    console.log("beginning handle change") // test
+    this.setState({
+        [event.target.name]: event.target.value,
+        errors: errors
+    })
+    console.log("end of handle change") // test
+}
+        handleSubmit = (event) => {
+            event.preventDefault();
+            const newSong = {
+                title: this.state.title,
+                artist: this.state.artist,
+                album: this.state.album,
+                release_date: this.state.release_date
+            }
+            console.log(newSong)
+            this.props.addSong(newSong);
+            this.setState({
+                title: '',
+                artist: '',
+                album: '',
+                release_date: ''
+            });
+            alert(`newSongTitle: ${this.state.title}
+                newSongArtist: ${this.state.artist}
+                newSongAlbum: ${this.state.album}
+                newSongRealeaseDate: ${this.state.realease_date}`)
+        };
     
     render() {
         return(
@@ -116,3 +124,31 @@ class NewSongForm extends Component{
     }
 }
 export default NewSongForm;
+
+
+
+
+// async postNewSong(song) {
+    //     let res = await axios.post(`http://127.0.0.1:8000/music_library/${song}/`);
+    //     console.log(res);
+    // }
+
+
+    // async postNewSong(){
+    //     let newSong = Object.assign({},this.state);
+    //     console.log(newSong);
+    //     newSong.errors ='';
+    //     try{
+    //         let res = await axios.post('http://127.0.0.1:8000/music_library/', newSong);
+    //         if(res.status === 201){
+    //             alert(`"${this.state.title}" by ${this.state.artist} added to songs database.`)
+    //             this.props.updateDisplay();
+    //             this.setState({
+    //                 songs: res.data
+    //             })
+    //         }
+    //     }
+    //     catch(ex){
+    //         alert('Error in request: Unable to add song')
+    //     }
+    // }
