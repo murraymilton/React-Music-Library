@@ -41,8 +41,13 @@ class App extends Component{
         });
     }
 
+    // async postNewSong(song) {
+    //     await axios.post(`http://127.0.0.1:8000/music_library/${song}/`);
+    //     console.log(song);
+    // }
+
     async deleteSong(song, songs) {
-        let tempSongs = `${this.state.songs}`;
+        let tempSongs = `${this.state.songs}`
         tempSongs.pop(song);
         this.setState({
             songs: tempSongs
@@ -56,7 +61,7 @@ class App extends Component{
         return(
             <React.Fragment>
                 <div className="container-fluid">
-                    <NewSongForm songs={this.state.songs} addSong={this.addSong} />
+                    <NewSongForm songs={this.state.songs} addSong={this.addSong} postNewSong={this.postNewSong}/>
                     <DisplayMusic songs={this.state.songs} deleteSong={this.deleteSong} />
                 </div>
             </React.Fragment>

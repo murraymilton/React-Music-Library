@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React, {Component} from 'react';
 
 
@@ -22,31 +22,37 @@ class NewSongForm extends Component{
         } 
         
     }
+    // componentDidMount() {
+    //     this.postNewSong();
+    // }
+
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         });
     }
-    async postNewSong(){
-        let newSong = Object.assign({},this.state);
-        newSong.errors ='';
-        try{
-            let res = await axios.post('http://127.0.0.1:8000/music_library/', newSong);
-            if(res.status === 201){
-                alert(`"${this.state.title}" by ${this.state.artist} added to songs database.`)
-                this.props.updateDisplay();
-                this.setState({
-                    title:'',
-                    artist:'',
-                    album:'',
-                    realease_date:''
-                })
-            }
-        }
-    catch(ex){
-        alert('Error in request: Unable to add song')
-    }
-}
+
+    
+
+
+    // async postNewSong(){
+    //     let newSong = Object.assign({},this.state);
+    //     console.log(newSong);
+    //     newSong.errors ='';
+    //     try{
+    //         let res = await axios.post('http://127.0.0.1:8000/music_library/', newSong);
+    //         if(res.status === 201){
+    //             alert(`"${this.state.title}" by ${this.state.artist} added to songs database.`)
+    //             this.props.updateDisplay();
+    //             this.setState({
+    //                 songs: res.data
+    //             })
+    //         }
+    //     }
+    //     catch(ex){
+    //         alert('Error in request: Unable to add song')
+    //     }
+    // }
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -67,9 +73,9 @@ class NewSongForm extends Component{
             newSongArtist: ${this.state.artist}
             newSongAlbum: ${this.state.album}
             newSongRealeaseDate: ${this.state.realease_date}`)
-        };
+    };
     
-    render(){
+    render() {
         return(
             <React.Fragment>
             <div className="d-flex justify-content-center">
