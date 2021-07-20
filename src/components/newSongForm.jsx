@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class NewSongForm extends Component{
+    async componentDidMount(){
+      let res = axios.get("http://127.0.0.1:8000/music_library/",{headers:{Accept:'application/json'}});
+      console.log(res);
+    }
     constructor(props){
         super(props);
         this.state = {
