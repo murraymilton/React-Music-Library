@@ -4,7 +4,7 @@ import axios from 'axios';
 class NewSongForm extends Component{
     async componentDidMount(){
       let res = axios.get("http://127.0.0.1:8000/music_library/",{headers:{Accept:'application/json'}});
-      console.log(res);
+      console.log(res.data);
     }
     constructor(props){
         super(props);
@@ -29,22 +29,21 @@ class NewSongForm extends Component{
             [event.target.name]: event.target.value,
         });
     }
-    handleSubmit = (event) =>{
+    handleSubmit = (event, props) =>{
         event.preventDefault();
         const song = {
             title: this.state.title,
             artist: this.state.artist,
             album: this.state.album,
             release_date: this.state.release_date,
-        }
-        this.props.addSong(song);
-        this.setState({
-            newSongTitle: this.state.newSongTitle,
-            newSongArtist: this.state.newSongArtist,
-            newSongAlbum: this.state.newSongAlbum,
-            newSongRealeaseDate: this.state.newSongRealeaseDate,
-        });
-    }
+        };
+        alert(`newSongTitle: ${this.state.title}
+            newSongArtist: ${this.state.artist}
+            newSongAlbum: ${this.state.album}
+            newSongRealeaseDate: ${this.state.realease_date}`)
+            props.addSong(song)
+        };
+        
     render(){
         return(
             <React.Fragment>
