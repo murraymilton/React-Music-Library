@@ -2,7 +2,6 @@ import React, {Component} from'react';
 import axios from 'axios';
 import NewSongForm from './newSongForm';
 import DisplayMusic from './DisplayMusic/displayMusic';
-import SearchBar from './searchBar';
 
 class App extends Component{
     constructor(props){
@@ -25,16 +24,30 @@ class App extends Component{
         catch(ex){
             console.log('Error in API call!');
         }
-        
     }
+
+    addSong = (newSong) => {
+        let newSongObject = {
+          title: newSong.title,
+          artist: newSong.artist,
+          album: newSong.album,
+          release_date: newSong.release_date
+        }
+        let tempSongs = this.makeGetRequest;
+        tempSongs.push(newSongObject);
+        this.setState({
+          songs: tempSongs
+        });
+      }
+
 
     render() {
         return(
             <React.Fragment>
                 <div className="container-fluid">
-                    <NewSongForm refreshTable={this.state.songs} />
                     <DisplayMusic songs={this.state.songs} />
-                    <SearchBar />
+                    <NewSongForm songs={this.state.songs} />
+
                 </div>
             </React.Fragment>
         )

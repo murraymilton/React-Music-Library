@@ -21,34 +21,42 @@ class NewSongForm extends Component{
             }
             
         } 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);      
+        // this.handleChange = this.handleChange.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);      
     }
     handleChange = (event) => {
         this.setState({
-            [event.target.name]: event.target.value,
+            [event.target.name]: event.target.value
         });
     }
-    handleSubmit = (event, props) =>{
+
+    handleSubmit = (event) => {
         event.preventDefault();
-        const song = {
+        const newSong = {
             title: this.state.title,
             artist: this.state.artist,
             album: this.state.album,
             release_date: this.state.release_date,
-        };
+        }
+        this.props.addSong(newSong);
+        this.setState({
+            title: '',
+            artist: '',
+            album: '',
+            release_date: ''
+        });
         alert(`newSongTitle: ${this.state.title}
             newSongArtist: ${this.state.artist}
             newSongAlbum: ${this.state.album}
             newSongRealeaseDate: ${this.state.realease_date}`)
-            props.addSong(song)
-        };
+            
+    };
         
     render(){
         return(
             <React.Fragment>
             <div className="d-flex justify-content-center">
-                <form className="row jumbotron w-75" onSubmit= {this.handleSubmit}>
+                <form className="row jumbotron w-75" onSubmit={(event) => this.handleSubmit(event)}>
                     <h3 className="text-center" >Add New Song</h3>
                     <div className="form-group col-sm-3">
                         <div>
