@@ -13,7 +13,6 @@ const DisplayMusic = (props) => {
                 </thead>
                 {props.songs.map((song, {id}) => {
                     return (
-                        // console.log(song)
                         <div key = {id}>
                             <tbody>
                                 <td>{song.title}</td>
