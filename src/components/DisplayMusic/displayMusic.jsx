@@ -21,6 +21,7 @@ const DisplayMusic = (props) => {
                                 <td>{song.album}</td>
                                 <td>{song.release_date}</td>
                             </tbody>
+                            <button onClick={() => props.deleteSong(song.id)}>Delete Song</button>
                         </div>
                     );
                 })}

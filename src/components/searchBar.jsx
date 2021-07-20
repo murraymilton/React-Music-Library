@@ -22,29 +22,3 @@ class SearchBar extends React.Component{
                     searchMatch = true;
                 }
             }
-            if (searchMatch){
-                return true;
-            }
-        })
-        return filteredSongs;
-    }
-    handleSubmit = (event) => {
-        event.preventDefault();
-        let filteredSongs = this.filterSongs();
-        this.props.isFiltered(filteredSongs);
-    }
-    render(){
-        let filteredSongs = this.props.searchSong.filter(
-            (searchSong) =>{
-                return searchSong.song.indexOf(this.state.searchSong) !== -1
-            }
-        );
-        return(
-            <React.Fragment>
-                <form onSubmit={(event) => this.handleSubmit(event)}>
-                    <h3>Search</h3>
-                </form>
-            </React.Fragment>
-        )
-    }
-}
