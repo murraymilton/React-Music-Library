@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 
 class NewSongForm extends Component{
     constructor(props){
@@ -11,72 +10,41 @@ class NewSongForm extends Component{
             release_date: '',
             errors: {
                 title: '',
-                artist: ''
+                artist: '',
+                album: '',
+                release_date:''
             }
-        }       
+            
+        } 
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);      
     }
-    componentDidMount(){
-        this.postNewSong();
-    }
-
     handleChange = (event) => {
-        let errors = this.state.errors;
-        switch(event.target.name){
-            case 'title':
-                errors.title = event.target.value.length < 2 ? 'Title must be at least two characters.' : null;
-                break;
-            case 'artist':
-                errors.artist = event.target.value.length < 2 ? 'Artist must be at least two characters.' : null;
-                break;
-            default:
-        }
-
         this.setState({
             [event.target.name]: event.target.value,
-            errors: errors
-        })
+        });
     }
-
-    async postNewSong(){
-        let newSong = Object.assign({},this.state);
-        newSong.errors = '';
-        try{
-            let response = await axios.post('http://127.0.0.1:8000/music_library/', newSong);
-            if (response.status === 201){
-                alert(`"${this.state.title}" by ${this.state.artist} added to database!`)
-                this.props.refreshTable();
-                this.setState({
-                    title: '',
-                    artist: '',
-                    album: '',
-                    release_date: ''
-                })
-            }
-        }
-        catch(ex){
-            alert('Error in API call! Song not added.');
-        }
-    }
-
-    isInvalid(){
-        if (this.state.errors.title || this.state.errors.artist || !this.state.album || !this.state.release_date){
-            return true;
-        }
-    }
-
-    handleSubmit = (event) => {
+    handleSubmit = (event) =>{
         event.preventDefault();
-        if (this.isInvalid()){
-            alert('Please make sure all fields have been completed.');
-            return
+        const song = {
+            title: this.state.title,
+            artist: this.state.artist,
+            album: this.state.album,
+            release_date: this.state.release_date,
         }
-        this.postNewSong();
+        this.props.addSong(song);
+        this.setState({
+            newSongTitle: this.state.newSongTitle,
+            newSongArtist: this.state.newSongArtist,
+            newSongAlbum: this.state.newSongAlbum,
+            newSongRealeaseDate: this.state.newSongRealeaseDate,
+        });
     }
-
     render(){
         return(
+            <React.Fragment>
             <div className="d-flex justify-content-center">
-                <form className="row jumbotron w-75" onSubmit={(event) => this.handleSubmit(event)}>
+                <form className="row jumbotron w-75" onSubmit= {this.handleSubmit}>
                     <h3 className="text-center" >Add New Song</h3>
                     <div className="form-group col-sm-3">
                         <div>
@@ -109,6 +77,7 @@ class NewSongForm extends Component{
                     </div>
                 </form>
             </div>
+            </React.Fragment>
         )
     }
 }
