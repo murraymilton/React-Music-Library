@@ -10,10 +10,15 @@ class SearchBar extends Component{
     }
 
     handleChange = (event) => {
-        this.setState({[event.target.name]: event.target.value
-        })
-        this.props.filter(event.target.value);
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+        // this.props.filter(event.target.value);
     };
+    handleSubmit = (event) => {
+        event.preventDefault();
+        
+    }
 
     render(){
         return(

@@ -33,7 +33,8 @@ class App extends Component{
           album: newSong.album,
           release_date: newSong.release_date
         }
-        let tempSongs = this.makeGetRequest;
+        console.log("*** State-songs : ",this.state.songs)
+        let tempSongs = this.state.songs;
         tempSongs.push(newSongObject);
         this.setState({
           songs: tempSongs
@@ -46,7 +47,7 @@ class App extends Component{
             <React.Fragment>
                 <div className="container-fluid">
                     <DisplayMusic songs={this.state.songs} />
-                    <NewSongForm songs={this.state.songs} />
+                    <NewSongForm songs={this.state.songs} addSong={this.addSong} />
 
                 </div>
             </React.Fragment>
