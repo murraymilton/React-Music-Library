@@ -2,6 +2,7 @@ import React, {Component} from'react';
 import axios from 'axios';
 import NewSongForm from './newSongForm';
 import DisplayMusic from './DisplayMusic/displayMusic';
+import SearchBar from './searchBar';
 
 class App extends Component{
     constructor(props){
@@ -39,16 +40,34 @@ class App extends Component{
         this.setState({
           songs: tempSongs
         });
+        
       }
+      async addSong(song){
+        console.log(song)
+        try{
+            let response = await axios.post('http://127.0.0.1:8000/music_library/', song);
+            // console.log(response.data)
+            // alert('Song Added!')
+            this.setState({
+                song:response.data
+            });
+            this.getAllSongs()
+        }
+        catch(e){
+            console.log(e.message)
+        }
+    
+    }
 
 
     render() {
         return(
             <React.Fragment>
                 <div className="container-fluid">
-                    <DisplayMusic songs={this.state.songs} />
                     <NewSongForm songs={this.state.songs} addSong={this.addSong} />
-
+                    <SearchBar songs={this.state.songs} />
+                    <DisplayMusic songs={this.state.songs} />
+                    
                 </div>
             </React.Fragment>
         )
