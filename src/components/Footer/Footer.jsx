@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Footer.css';
 
-const Footer = () => {
-    return ( 
-        <footer className="footer">
-            <div class="container">
-                <span class="text-muted">Providing Best in Music Playlist Storage Services</span>
-            </div>
-        </footer>
-     );
+class Footer extends Component {
+  render() {
+    
+    const currentYear = new Date().getFullYear();
+    return (
+
+        
+      <p>Copyright © {currentYear}</p>
+      
+    )
+  }
 }
- 
+
 export default Footer;

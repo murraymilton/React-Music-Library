@@ -1,6 +1,6 @@
 import React, {Component} from'react';
 import axios from 'axios';
-import NewSongForm from './newSongForm';
+import NewSongForm from './newSongForm/newSongForm';
 import SearchBar from './searchBar';
 import DisplayMusic from './DisplayMusic/displayMusic';
 import Footer from './Footer/Footer';
@@ -30,16 +30,15 @@ class App extends Component{
         }
     }
     addSong = (newSong) => {
-        let newSongObject = {
-          title: newSong.title,
-          artist: newSong.artist,
-          album: newSong.album,
-          release_date: newSong.release_date
-        }
-        let tempSongs = this.state.songs;
-        tempSongs.push(newSongObject);
-        this.setState({
-          songs: tempSongs
+        console.log(newSong);
+        alert(`newSongTitle: ${this.state.SongTitle}
+        newSongArtist: ${this.state.artist}
+        newSongAlbum: ${this.state.album}
+        newSongRealeaseDate: ${this.state.realease_date}`)
+        axios.post(`http://127.0.0.1:8000/music_library/`, newSong)
+        this.setState
+        ({
+            newSong: [...this.state.songs, newSong]
         });
         
     }
