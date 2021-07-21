@@ -35,7 +35,7 @@ class SearchBar extends Component{
                             <input type="text" className="form-control" name="searchTerm" onChange={this.handleChange} value={this.state.searchTerm} />
                         </div>
                     </div>
-                    <div className="d-grid gap-2 col-6 mx-auto">
+                    <div className="text-center mt-5">
                         <button type="submit" className="btn btn-primary btn-lg">Search</button>
                     </div>
                 </form>
