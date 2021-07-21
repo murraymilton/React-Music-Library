@@ -53,28 +53,28 @@ class NewSongForm extends Component{
         return(
             <React.Fragment>
             <div className="d-flex justify-content-center">
-                <form className="row jumbotron w-80
+                <form className="row g-3
                 " onSubmit={(event) => this.handleSubmit(event)}>
                     <h3 className="text-center" >Add New Song</h3>
-                    <div className="form-group col-sm-3">
+                    <div className="col-md-6">
                         <div>
                             <label for="title">Song Title</label>
-                            <input type="text"name="SongTitle"placeholder="Title"onChange={this.handleChange}value={this.state.title}/>
+                            <input type="text"class="form-control"name="SongTitle"placeholder="Title"onChange={this.handleChange}value={this.state.title}/>
                         </div>
                     </div>
-                    <div className="form-group col-sm-3">
+                    <div className=" col-md-6">
                         <div>
                             <label for="artist">Artist</label>
-                            <input  type="text"name="SongArtist"placeholder="Artist"onChange={this.handleChange}value={this.state.artist} />
+                            <input  type="text"class="form-control"name="SongArtist"placeholder="Artist"onChange={this.handleChange}value={this.state.artist} />
                         </div>
                     </div>
-                    <div className="form-group col-sm-3">
+                    <div className="col-md-6">
                         <label for="album">Album</label>
-                        <input type="text"name="SongAlbum"placeholder="Album"onChange={this.handleChange}value={this.state.album} />
+                        <input type="text"class="form-control"name="SongAlbum"placeholder="Album"onChange={this.handleChange}value={this.state.album} />
                     </div>
-                    <div className="form-group col-sm-3">
+                    <div className="col-md-6">
                         <label for="release_date">Release Date</label>
-                        <input  type="datetime-local"name="SongReleaseDate"placeholder="Release Date"onChange={this.handleChange}value={this.state.release_date} />
+                        <input  type="datetime-local"class="form-control"name="SongReleaseDate"placeholder="Release Date"onChange={this.handleChange}value={this.state.release_date} />
                     </div>
                     <div className="d-flex justify-content-center">
                         <button type="submit" className="btn btn-primary w-md-25">Submit</button>
