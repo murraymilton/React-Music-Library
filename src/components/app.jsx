@@ -30,7 +30,8 @@ class App extends Component{
         }
     }
     addSong = (newSong) => {
-        alert(`newSongTitle: ${this.state.newSong}
+        console.log(newSong);
+        alert(`newSongTitle: ${this.state.SongTitle}
         newSongArtist: ${this.state.artist}
         newSongAlbum: ${this.state.album}
         newSongRealeaseDate: ${this.state.realease_date}`)

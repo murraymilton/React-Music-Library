@@ -11,7 +11,6 @@ class NewSongForm extends Component{
         SongArtist:'',
         SongAlbum:'',
         SongReleaseDate:'',
-        SongGenre:'',
     }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,7 +32,6 @@ class NewSongForm extends Component{
             artist: this.state.SongArtist,
             album: this.state.SongAlbum,
             release_date: this.state.SongReleaseDate,
-            genre: this.state.SongGenre
            
         }
         console.log(song)
@@ -43,7 +41,6 @@ class NewSongForm extends Component{
                 newSongArtist: this.state.newSongArtist,
                 newSongAlbum: this.state.newSongAlbum,
                 newSongReleaseDate: this.state.newSongReleaseDate,
-                newSongGenre: this.state.newSongGenre
             },
             console.log(this)
             );
