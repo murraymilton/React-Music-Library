@@ -46,15 +46,11 @@ class App extends Component{
     async deleteSong(song) {
         try{
             let res = await axios.delete(`http://127.0.0.1:8000/music_library/${song}/`);
-            if(res.status === 200){
+            if (res.data.is_valid) {
                 alert(`${this.state.song.title} by ${this.state.song.artist} deleted from your database.`);
-                let tempSongs = axios.get(`http://127.0.0.1:8000/music_library/`);
-                this.setState({
-                    songs: tempSongs.data
-                });
+                this.makeGetRequest();
+                }
             }
-            
-        }
         catch(ex){
             alert('Error in request: Unable to delete song')
         }
