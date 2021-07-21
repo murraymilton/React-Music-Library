@@ -3,7 +3,7 @@ import './Header.css';
 
 function Header(){
     return <header>
-        <h1> Music Library</h1>
+        <h1> K's & M's Music Library Hosting</h1>
     </header>
 }
  
